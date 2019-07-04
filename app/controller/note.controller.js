@@ -9,7 +9,7 @@ exports.create = (req, res)=>{
     let note = new Note({
         title:req.body.title||'tanpa judul',
         content : req.body.content,
-        img:'http://localhost:5000/public/img/'+req.body.title+'.jpg'
+        img:'http://localhost:8080/img/'+req.body.title+'.jpg'
     })
 
     note.save()
@@ -66,7 +66,7 @@ exports.update = (req, res)=>{
     Note.findByIdAndUpdate(req.params.noteId,{
         title: req.body.title || "tanpa judul",
         content : req.body.content,
-        img:'http://localhost:5000/public/img/'+req.body.title+'.jpg'
+        img:'http://localhost:8080/img/'+req.body.title+'.jpg'
     },{new:true})
     .then(note=>{
         if(!note){
