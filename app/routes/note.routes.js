@@ -1,5 +1,6 @@
-module.exports = (app)=>{
 
+    const express = require('express')
+    const app = express.Router()
     const notes =require('../controller/note.controller');
     var multer = require('multer')
     var storage = multer.diskStorage({
@@ -22,4 +23,5 @@ module.exports = (app)=>{
     app.put('/notes/:noteId',upload.single('img'),notes.update);
 
     app.delete('/notes/:noteId',notes.delete)
-}
+
+    module.exports=app
