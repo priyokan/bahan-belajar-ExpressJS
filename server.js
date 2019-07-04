@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dbConfig = require('./config/database.config')
 const mongoose = require ('mongoose')
-const multer = require('multer')
-const upload = multer()
 const cors = require ('cors')
 
 mongoose.Promise = global.Promise
@@ -17,7 +15,6 @@ app.use(bodyParser.json())
 
 app.use(bodyParser())
 
-app.use(upload.array())
 app.use(express.static('public'))
 
 mongoose.connect(dbConfig.url,{
@@ -36,6 +33,6 @@ app.get("/",(req,res)=>{
 
 require('./app/routes/note.routes')(app)
 
-app.listen(5000,()=>{
-    console.log('server port 5000')
+app.listen(5050,()=>{
+    console.log('server port 5050')
 })

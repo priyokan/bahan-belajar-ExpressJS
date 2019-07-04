@@ -8,7 +8,8 @@ exports.create = (req, res)=>{
     }
     let note = new Note({
         title:req.body.title||'tanpa judul',
-        content : req.body.content
+        content : req.body.content,
+        img:'http://localhost:5000/public/img/'+req.body.title+'.jpg'
     })
 
     note.save()
@@ -47,11 +48,12 @@ exports.findOne = (req, res)=>{
         if(err.kind === 'ObjectId'){
             return res.status(404).send({
                 message:"data tidak ditemukan"+req.params.noteId
-            })
+            })}
+
             return res.status(500).send({
                 message:'Error penerimaan data'
             })
-        }
+        
     });
 }
 
@@ -63,7 +65,8 @@ exports.update = (req, res)=>{
     }
     Note.findByIdAndUpdate(req.params.noteId,{
         title: req.body.title || "tanpa judul",
-        content : req.body.content
+        content : req.body.content,
+        img:'http://localhost:5000/public/img/'+req.body.title+'.jpg'
     },{new:true})
     .then(note=>{
         if(!note){
