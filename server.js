@@ -40,10 +40,10 @@ app.get("/",(req,res)=>{
 
 app.use('/api/user',user)
 
-app.use('/api',Notes)
+app.use('/api/notes',validateUser,Notes)
 
 function validateUser(req, res, next) {
-    jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function(err, decoded) {
+    jwt.verify(req.headers['token'], req.app.get('secretKey'), function(err, decoded) {
       if (err) {
         res.json({status:"error", message: err.message, data:null});
       }else{
